@@ -1,0 +1,3 @@
+v1.0:第一代php會員系統
+v1.1:使用oop架構+PDO
+v1.2:delete()函數改名=>delete_u()
