@@ -1,11 +1,5 @@
 ﻿<?php
 require_once("config.php");
+require_once("include/function.php");
 
-$dsn = DB_TYPE .":host=".DB_HOSTNAME .";dbname=". DB_NAME . ";charset=". DB_CHARSET;
-
-try{
-	$db = new PDO($dsn,DB_USERNAME,DB_PASSWORD);
-}catch (PDOException $e) {
-	echo $e->getCode();
-}
-?>
+$member = new member();

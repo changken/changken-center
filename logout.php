@@ -1,7 +1,6 @@
 ﻿<?php
 session_start();
-require_once("function.php");
-$member = new member();
+require_once("config.inc.php");
 ?>
 <!DOCTYPE html>
 <html lang="zh-TW">
@@ -16,6 +15,8 @@ $member = new member();
 		<div style="text-align: center;">
 			<?php
 			$member->logout();//使用登出函數
+			echo "登出中...";
+			echo '<meta http-equiv="refresh" content="2; url=login.php">';
 			?>
 		</div>
 	</body>
