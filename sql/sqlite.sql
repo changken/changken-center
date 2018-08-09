@@ -1,0 +1,9 @@
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS `user` (
+	`NO`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	`username`	TEXT,
+	`email`	TEXT,
+	`password`	TEXT,
+	`level`	TEXT
+);
+COMMIT;

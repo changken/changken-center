@@ -1,0 +1,25 @@
+{
+  "name": "changken/center",
+  "description": "It is an example project for php member system.",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "changken",
+      "email": "pp24513@gmail.com"
+    }
+  ],
+  "autoload": {
+    "classmap": [
+      "include"
+    ],
+    "files": [
+      "config.php"
+    ]
+  },
+  "scripts": {
+    "server": [
+      "@php -S localhost:8080"
+    ]
+  }
+}

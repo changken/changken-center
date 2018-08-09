@@ -1,25 +1,14 @@
 ﻿<?php
-session_start();
+require_once("load.php");
 
-require_once("config.inc.php");
+$row = $member->getUserinfoBn($_POST['username']);
 
-$username = $_POST['username'];
-$email = $_POST['email'];
-$password = $_POST['password'];
-$level = $_POST['level']; //會員等級不可更改
-
-$row = $member->getUserinfoBn($username);
-
-if ($password == null) 
-{
-	$password_md5 = $row['password'];
-} 
-else 
-{
-	$password_md5 = md5($password);
-}
-
-$code = $member->update($username, $email, $password_md5, $level); //使用更新帳號資訊函數
+$code = $member->update([
+    'username' => $_POST['username'],
+    'email' => $_POST['email'],
+    'password' => ($_POST['password'] == null) ? $row['password'] : md5($_POST['password']),
+    'level' => $_POST['level'] //會員等級不可更改
+]); //使用更新帳號資訊函數
 
 	switch ($code) 
 	{

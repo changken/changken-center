@@ -1,6 +1,6 @@
-v1.0:�Ĥ@�Nphp�|���t��
-v1.1:�ϥ�oop�[�c+PDO
-v1.2:delete()��Ƨ�W=>delete_u()
+v1.0:第一代php會員系統
+v1.1:使用oop架構+PDO
+v1.2:delete()函數改名=>delete_u()
 v1.3:
- (1)�[�c²��
- (2)���v1.2�ⴣ�ܰT���θ���g�b��Ʈw���A�{�b�C�Ө�ƨ̷Ӫ��p�����P�|�^�Ǥ@�ӼƦr�A�i�ϥ�if else�Ϊ̬Oswitch�P�_�^�Ǫ��Ʀr�Ӷi��ʧ@�A�]�����ܰT���P���ೣ�i�H�ۤv�M�w�C
+ (1)架構簡潔
+ (2)原先v1.2把提示訊息及跳轉寫在函數庫中，現在每個函數依照狀況的不同會回傳一個數字，可使用if else或者是switch判斷回傳的數字來進行動作，因此提示訊息與跳轉都可以自己決定。

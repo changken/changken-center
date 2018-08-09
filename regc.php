@@ -1,14 +1,13 @@
 ﻿<?php
-require_once("config.inc.php");
+require_once("load.php");
 
-$username = $_POST['username'];
-$email = $_POST['email'];
-$password = $_POST['password'];
-$password2 = $_POST['password2'];
-$level = "user"; //會員等級預設為普通會員
-$password_md5 = md5($password); //密碼加密
-
-$code = $member->reg($username, $email, $password, $password2, $password_md5, $level); //使用註冊函數
+$code = $member->reg([
+    'username' => $_POST['username'],
+    'email' => $_POST['email'],
+    'password' => $_POST['password'],
+    'password2' => $_POST['password2'],
+    'level' => 'user' //會員等級預設為普通會員
+]); //使用註冊函數
 
 	switch ($code) 
 	{

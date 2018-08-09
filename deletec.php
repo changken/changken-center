@@ -1,11 +1,12 @@
-﻿<?php 
-session_start();
+﻿<?php
+require_once("load.php");
 
-require_once("config.inc.php");
+if($session->check(function ($user, $level) {
+    return $level == "admin";
+})){
 
-$username = $_POST['username'];
-
-$code = $member->delete_u($username);//使用刪除函數
+    $username = $_POST['username'];
+    $code = $member->delete_u($username);//使用刪除函數
 
 	switch ($code) 
 	{
@@ -25,14 +26,11 @@ $code = $member->delete_u($username);//使用刪除函數
 			echo "<span style=\"color:red;\">刪除失敗！</span>";
 			echo '<meta http-equiv="refresh" content="2; url=member.php">';
 		break;
-		case 4:
-			echo "<span style=\"color:red;\">帳號權限不足！</span><br />";
-			echo "<span style=\"color:red;\">目前您的帳號權限為一般會員</span>";
-			echo '<meta http-equiv="refresh" content="2; url=member.php">';
-		break;
-		case 5:
-			echo "<span style=\"color:red;\">您尚未登入！</span>";
-			echo '<meta http-equiv="refresh" content="2; url=login.php">';
-		break;		
 	}
+}
+else
+{
+    echo "<span style=\"color:red;\">帳號權限不足或您尚未登入！</span>";
+    echo '<meta http-equiv="refresh" content="2; url=login.php">';
+}
 	
