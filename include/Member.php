@@ -1,11 +1,15 @@
 ﻿<?php
 /**
- *changken會員系統專用函數庫
- *簡介:為促進程式開發人員方便開發，changken特別製作專用函數庫。
- *作者:changken
- *使用方式:請將函數直接複製即可。注意！一定要引入此函數庫，不然不能使用！
- *函數:reg()、login()、update()、delete_u()、logout()、getUserinfoBn()
- *版本:v1.3
+ * Member class
+ *
+ *@author changken admin@changken.org
+ *@version v2.0.0 dev-1
+ * @date 2018/8/9
+ * @since v1.0 不可考 changken:see change.log.txt
+ * @since v1.1 不可考 changken:see change.log.txt
+ * @since v1.2  2016/6/18 changken:see change.log.txt
+ * @since v1.3 2017/5/6 changken:see change.log.txt
+ * @since v2.0.0 dev-1 changken:see change.log.txt
  */
 
 class Member
@@ -14,28 +18,6 @@ class Member
         * @var PDO PDO的實例
         */
 	protected $db;
-
-    /**
-        * @var  Member Member實例
-        * @deprecated
-        */
-    //protected static $instace = null;
-
-    /**
-        * singleton
-        * @param mixed $args
-        * @return Member
-        * @deprecated 已有容器
-        */
-    /*public static function instance(... $args)
-    {
-        if(static::$instace == null)
-        {
-            static::$instace = new Member(... $args);
-        }
-
-        return static::$instace;
-    }*/
 
     /**
         * Member的建構子
@@ -69,11 +51,14 @@ class Member
 		{
 			$return = 2;
 		} 
-		elseif ($request['$password'] != $request['password2']) //兩次密碼不一致
+		elseif ($request['password'] != $request['password2']) //兩次密碼不一致
 		{
 			$return = 3;
 		} 
 		else {
+		    //md5加密
+            $pw_md5 = md5($request['password']);
+
 			//sql語法
 			$reg_sql = "INSERT INTO `user` (`username`, `email`, `password`, `level`) VALUES (:username, :email, :password_md5, :level);";
 			$reg = $this->db->prepare($reg_sql);
@@ -81,7 +66,7 @@ class Member
 			//過濾資料
 			$reg->bindParam(":username", $request['username'], PDO::PARAM_STR);
 			$reg->bindParam(":email", $request['email'], PDO::PARAM_STR);
-			$reg->bindParam(":password_md5", md5($request['password']), PDO::PARAM_STR);
+			$reg->bindParam(":password_md5", $pw_md5, PDO::PARAM_STR);
 			$reg->bindParam(":level", $request['level'], PDO::PARAM_STR);
 
 			//執行
@@ -106,6 +91,8 @@ class Member
         */
 	public function login(array $request)
 	{
+        //md5加密
+        $pw_md5 = md5($request['password']);
 
 		//sql語法
 		$login_sql = "SELECT * FROM `user` WHERE `username`=:username AND `password`=:password_md5;";
@@ -113,7 +100,7 @@ class Member
 
 		//過濾資料
 		$login->bindParam(":username", $request['username'], PDO::PARAM_STR);
-		$login->bindParam(":password_md5", md5($request['password']), PDO::PARAM_STR);
+		$login->bindParam(":password_md5", $pw_md5, PDO::PARAM_STR);
 
 		//執行
 		$login->execute();

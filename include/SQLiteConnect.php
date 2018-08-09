@@ -1,4 +1,12 @@
 <?php
+/**
+ * SQLite connect class
+ *
+ *@author changken admin@changken.org
+ *@version v2.0.0 dev-1
+ * @date 2018/8/9
+ * @since  v2.0.0 dev-1 see git
+ */
 
 class SQLiteConnect extends DBconnect
 {
@@ -9,7 +17,7 @@ class SQLiteConnect extends DBconnect
         */
     public function setConnect()
     {
-        $dsn = sprintf("%s:%s;charset=%s", DB_TYPE, DB_NAME, DB_CHARSET);
+        $dsn = sprintf("%s:%s", DB_TYPE, DB_NAME);
         try {
             $this->connect = new PDO($dsn);
         } catch (PDOException $e) {

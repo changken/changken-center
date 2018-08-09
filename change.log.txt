@@ -4,3 +4,14 @@ v1.2:delete()函數改名=>delete_u()
 v1.3:
  (1)架構簡潔
  (2)原先v1.2把提示訊息及跳轉寫在函數庫中，現在每個函數依照狀況的不同會回傳一個數字，可使用if else或者是switch判斷回傳的數字來進行動作，因此提示訊息與跳轉都可以自己決定。
+v2.0.0 dev-1:
+ >v2測試版第一版
+ >需要更多的測試
+ 2018/8/9更新
+ (1)架構更加簡潔、oop(才怪)
+ (2)新增Session、Container、MySQLConnect、SQLiteConnect類別
+ (3)改寫Member、DBconnect
+ (4)可以使用sqlite囉~
+ (5)開始支援composer套件管理系統(超好用)
+ (6)(無用的)容器也開始可以使用囉~
+ (7)由於使用到type hint，所以只能使用php7以上的版本
