@@ -100,7 +100,12 @@ class Session
         */
     public function check($restrict = true)
     {
-        if(is_callable($restrict)){
+        if(!isset($_SESSION[$this->prefix . 'status']))
+        {
+            return false;
+        }
+
+        if(is_callable($restrict)) {
             return $_SESSION[$this->prefix . 'status'] && $restrict($this->getUsername(), $this->getLevel());
         }
 

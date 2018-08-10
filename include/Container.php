@@ -3,9 +3,10 @@
  * Container class
  *
  *@author changken admin@changken.org
- *@version v2.0.0 dev-1
- * @date 2018/8/9
- * @since  v2.0.0 dev-1 see git
+ *@version v2.0.0 dev-2
+ * @date 2018/8/10
+ * @since  v2.0.0 dev-1 changken see git
+ * @since  v2.0.0 dev-2 changken see git
  */
 
 class Container
@@ -16,20 +17,20 @@ class Container
         */
     protected $instances = [];
 
-    public function __construct()
+    /**
+        * 建構子
+        *
+        * @param array $initialInstances 初始化實例(nullable)
+        * @return void
+        */
+    public function __construct(array $initialInstances = [])
     {
-        $this->bind('member', function(){
-            //return new Member(new MySQLConnect());
-            return new Member(new SQLiteConnect());
-        });
-
-        $this->bind('session', function(){
-           return new Session('test');
-        });
+        $this->instances = $initialInstances;
     }
 
     /**
-        * bind a instance
+        * 綁定一個實例
+        *
         * @param string $name
         * @param callable|mixed $instance
         * @return void
@@ -43,7 +44,8 @@ class Container
     }
 
     /**
-        * return a instance
+        * 回傳一個實例
+        *
         * @param string $name
         * @return mixed|null
         */
@@ -53,7 +55,8 @@ class Container
         {
             if(is_callable($this->instances[$name]))
             {
-                $tmp = $this->instances[$name]();
+                //如果是callback函數的話，那就使用該callback函數並傳入container實例
+                $tmp = $this->instances[$name]($this);
                 $this->instances[$name] = $tmp;
             }
 

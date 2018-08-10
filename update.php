@@ -1,6 +1,5 @@
 ﻿<?php
 require_once("load.php");
-$row = $member->getUserinfoBn($session->getUsername());
 ?>
 <!DOCTYPE html>
 <html lang="zh-TW">
@@ -14,6 +13,7 @@ $row = $member->getUserinfoBn($session->getUsername());
 		<h1 style="text-align: center;">更新帳號資訊</h1>
 		<div style="text-align: center;">
 		<?php if($session->check()):?>
+        <?php $row = $member->getUserinfoBn($session->getUsername()); ?>
 			<form method="post" action="updatec.php" name="reg">
 				<table style="text-align: center; width: 100px; margin-left: auto; margin-right: auto;" border="1" cellpadding="2" cellspacing="2">
 					<tbody>

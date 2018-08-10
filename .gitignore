@@ -2,3 +2,5 @@ config.php
 .idea
 vendor
 database.db
+node_modules
+package-lock.json
