@@ -9,21 +9,19 @@
       "email": "pp24513@gmail.com"
     }
   ],
+  "require": {
+    "philo/laravel-blade": "3.*"
+  },
   "autoload": {
+    "psr-4": {
+      "Changken\\": "Changken/"
+    },
     "classmap": [
-      "include",
-      "custom"
+      "include"
     ],
     "files": [
-      "config.php"
+      "config.php",
+      "helper/helper.php"
     ]
-  },
-  "scripts": {
-    "server": [
-      "@php -S localhost:8080"
-    ]
-  },
-  "scripts-descriptions": {
-    "server" : "start php built-in server"
   }
 }

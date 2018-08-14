@@ -9,37 +9,47 @@ $code = $member->login([
 	switch ($code) 
 	{
 		case 0:
-			echo "<span style=\"color:red;\">錯誤！使用者名稱不能為空！</span>";
-			echo '<meta http-equiv="refresh" content="2; url=login.php">';
+		    $status = 0;
+			$msg = "錯誤！使用者名稱不能為空！";
 		break;
 		case 1:
-			echo "<span style=\"color:red;\">錯誤！密碼不能為空！</span>";
-			echo '<meta http-equiv="refresh" content="2; url=login.php">';
+            $status = 0;
+            $msg = "錯誤！密碼不能為空！";
 		break;
 		case 2:
-			echo "<span style=\"color:red;\">錯誤！查無使用者或密碼錯誤！</span>";
-			echo '<meta http-equiv="refresh" content="2; url=login.php">';
+            $status = 0;
+            $msg = "錯誤！查無使用者或密碼錯誤！";
 		break;
 		case 3:
-			echo "<span style=\"color:green;\">登入成功！</span>";
-			echo "您的會員權限為:普通會員";
-			echo '<meta http-equiv="refresh" content="2; url=member.php">';
+            $status = 1;
+            $msg = "登入成功！您的會員權限為:普通會員";
+            $redirectTo = "member.php";
+            //session
 			$session->login([
 			    'username' => $_POST['username'],
                 'level' => 'user'
             ]);
 		break;
 		case 4:
-			echo "<span style=\"color:green;\">登入成功！</span>";
-			echo "您的會員權限為:管理員";
-			echo '<meta http-equiv="refresh" content="2; url=member.php">';
+            $status = 1;
+            $msg = "登入成功！您的會員權限為:管理員";
+            $redirectTo = "member.php";
+            //session
             $session->login([
                 'username' => $_POST['username'],
                 'level' => 'admin'
             ]);
 		break;
 		case 5:
-			echo "<span style=\"color:red;\">登入失敗！</span>";
-			echo '<meta http-equiv="refresh" content="2; url=login.php">';
+            $status = 0;
+            $msg = "登入失敗！";
 		break;
 	}
+
+	//blade
+	echo $view->view()->make('tpl.msg',[
+	    'title' => '登入',
+        'status' => $status,
+        'msg' => $msg,
+        'redirectTo' => (isset($redirectTo)) ? $redirectTo : "login.php"
+    ])->render();

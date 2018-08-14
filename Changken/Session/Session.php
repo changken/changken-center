@@ -1,12 +1,6 @@
 <?php
-/**
- * Session class
- *
- *@author changken admin@changken.org
- *@version v2.0.0 dev-1
- * @date 2018/8/9
- * @since  v2.0.0 dev-1 see git
- */
+
+namespace Changken\Session;
 
 class Session
 {

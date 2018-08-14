@@ -4,3 +4,5 @@ vendor
 database.db
 node_modules
 package-lock.json
+composer.lock
+blade/cache

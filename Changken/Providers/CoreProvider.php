@@ -1,12 +1,13 @@
 <?php
-/**
- *  CoreProvider class
- *
- * @author changken admin@changken.org
- * @version v2.0.0 dev-2
- * @date: 2018/8/10
- * @since v2.0.0 dev-2 changken see git
- */
+
+namespace Changken\Providers;
+
+use Philo\Blade\Blade;
+use Changken\Core\Container;
+//use Changken\Database\MySQLConnect;
+use Changken\Database\SQLiteConnect;
+use Changken\Database\Member;
+use Changken\Session\Session;
 
 class CoreProvider extends Provider
 {
@@ -31,6 +32,10 @@ class CoreProvider extends Provider
 
         $this->container->bind('session', function(Container $container){
             return new Session('ra9_');
+        });
+
+        $this->container->bind('blade', function (Container $container){
+            return new Blade(VIEWS_PATH, CACHE_PATH);
         });
     }
 }

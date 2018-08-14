@@ -1,21 +1,11 @@
-﻿<?php
-/**
- * Member class
- *
- *@author changken admin@changken.org
- *@version v2.0.0 dev-1
- * @date 2018/8/9
- * @since v1.0 不可考 changken:see change.log.txt
- * @since v1.1 不可考 changken:see change.log.txt
- * @since v1.2  2016/6/18 changken:see change.log.txt
- * @since v1.3 2017/5/6 changken:see change.log.txt
- * @since v2.0.0 dev-1 changken:see change.log.txt
- */
+<?php
+
+namespace Changken\Database;
 
 class Member
 {
 	/**
-        * @var PDO PDO的實例
+        * @var \PDO PDO的實例
         */
 	protected $db;
 
@@ -64,10 +54,10 @@ class Member
 			$reg = $this->db->prepare($reg_sql);
 
 			//過濾資料
-			$reg->bindParam(":username", $request['username'], PDO::PARAM_STR);
-			$reg->bindParam(":email", $request['email'], PDO::PARAM_STR);
-			$reg->bindParam(":password_md5", $pw_md5, PDO::PARAM_STR);
-			$reg->bindParam(":level", $request['level'], PDO::PARAM_STR);
+			$reg->bindParam(":username", $request['username'], \PDO::PARAM_STR);
+			$reg->bindParam(":email", $request['email'], \PDO::PARAM_STR);
+			$reg->bindParam(":password_md5", $pw_md5, \PDO::PARAM_STR);
+			$reg->bindParam(":level", $request['level'], \PDO::PARAM_STR);
 
 			//執行
 			if ($reg->execute()) 
@@ -99,14 +89,14 @@ class Member
 		$login = $this->db->prepare($login_sql);
 
 		//過濾資料
-		$login->bindParam(":username", $request['username'], PDO::PARAM_STR);
-		$login->bindParam(":password_md5", $pw_md5, PDO::PARAM_STR);
+		$login->bindParam(":username", $request['username'], \PDO::PARAM_STR);
+		$login->bindParam(":password_md5", $pw_md5, \PDO::PARAM_STR);
 
 		//執行
 		$login->execute();
 
 		//從資料庫撈取資料(1筆)
-		$login_row = $login->fetch(PDO::FETCH_ASSOC);
+		$login_row = $login->fetch(\PDO::FETCH_ASSOC);
 
 		//一連串的判斷
 		if ($request['username'] == null) //使用者名稱為空
@@ -154,10 +144,10 @@ class Member
 		$update = $this->db->prepare($update_sql);
 
 		//過濾資料
-		$update->bindParam(":email", $request['email'], PDO::PARAM_STR);
-		$update->bindParam(":password_md5", $request['password'], PDO::PARAM_STR);
-		$update->bindParam(":level", $request['level'], PDO::PARAM_STR);
-		$update->bindParam(":username", $request['username'], PDO::PARAM_STR);
+		$update->bindParam(":email", $request['email'], \PDO::PARAM_STR);
+		$update->bindParam(":password_md5", $request['password'], \PDO::PARAM_STR);
+		$update->bindParam(":level", $request['level'], \PDO::PARAM_STR);
+		$update->bindParam(":username", $request['username'], \PDO::PARAM_STR);
 
 		//執行
 		if ($update->execute()) 
@@ -197,7 +187,7 @@ class Member
             $delete_u = $this->db->prepare($delete_sql);
 			
             //過濾資料
-            $delete_u->bindParam(":username", $username, PDO::PARAM_STR);
+            $delete_u->bindParam(":username", $username, \PDO::PARAM_STR);
 			
             if ($delete_u->execute())
             {
@@ -225,12 +215,12 @@ class Member
 		$getuser = $this->db->prepare($getuser_sql);
 		
 		//過濾資料
-		$getuser->bindParam(":username", $username, PDO::PARAM_STR);
+		$getuser->bindParam(":username", $username, \PDO::PARAM_STR);
 		
 		//執行
 		$getuser->execute();
 		
 		//取得使用者資訊(1筆)
-		return $getuser->fetch(PDO::FETCH_ASSOC);
+		return $getuser->fetch(\PDO::FETCH_ASSOC);
 	}
 }

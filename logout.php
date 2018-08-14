@@ -1,23 +1,12 @@
 ﻿<?php
 require_once("load.php");
-?>
-<!DOCTYPE html>
-<html lang="zh-TW">
 
-	<head>
-		<meta charset="UTF8">
-		<title>登出中...</title>
-	</head>
+$session->logout();//使用登出函數
 
-	<body>
-		<h1 style="text-align: center;">登出中...</h1>
-		<div style="text-align: center;">
-			<?php
-			$session->logout();//使用登出函數
-			echo "登出中...";
-			echo '<meta http-equiv="refresh" content="2; url=login.php">';
-			?>
-		</div>
-	</body>
-
-</html>
+//blade
+echo $view->view()->make('tpl.msg', [
+    'title' => '登出中...',
+    'status' => '1',
+    'msg' => '登出中...',
+    'redirectTo' => 'login.php'
+])->render();

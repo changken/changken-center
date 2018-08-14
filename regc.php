@@ -12,27 +12,35 @@ $code = $member->reg([
 	switch ($code) 
 	{
 		case 0:
-			echo "<span style=\"color:red;\">錯誤！使用者名稱不能為空！</span>";
-			echo '<meta http-equiv="refresh" content="2; url=reg.php">';
+		    $status = 0;
+		    $msg = "錯誤！使用者名稱不能為空！";
 		break;
 		case 1:
-			echo "<span style=\"color:red;\">錯誤！密碼不能為空！</span>";
-			echo '<meta http-equiv="refresh" content="2; url=reg.php">';
+            $status = 0;
+			$msg =  "錯誤！密碼不能為空！";
 		break;
 		case 2:
-			echo "<span style=\"color:red;\">錯誤！密碼(再輸入一次)不能為空！</span>";
-			echo '<meta http-equiv="refresh" content="2; url=reg.php">';
+		    $status = 0;
+			$msg = "錯誤！密碼(再輸入一次)不能為空！";
 		break;
 		case 3:
-			echo "<span style=\"color:red;\">錯誤！密碼輸入不一致！</span>";
-			echo '<meta http-equiv="refresh" content="2; url=reg.php">';
+		    $status = 0;
+			$msg = "錯誤！密碼輸入不一致！";
 		break;
 		case 4:
-			echo "<span style=\"color:green;\">註冊成功！</span>";
-			echo '<meta http-equiv="refresh" content="2; url=reg.php">';
+		    $status = 1;
+			$msg = "註冊成功！";
 		break;
 		case 5:
-			echo "<span style=\"color:red;\">註冊失敗！</span>";
-			echo '<meta http-equiv="refresh" content="2; url=reg.php">';
+		    $status = 0;
+			$msg = "註冊失敗！";
 		break;
 	}
+
+	//blade
+	echo $view->view()->make('tpl.msg',[
+	    'title' => '註冊',
+        'status' => $status,
+        'msg' => $msg,
+        'redirectTo' => 'reg.php'
+    ])->render();

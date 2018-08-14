@@ -1,13 +1,6 @@
 <?php
-/**
- * Container class
- *
- *@author changken admin@changken.org
- *@version v2.0.0 dev-2
- * @date 2018/8/10
- * @since  v2.0.0 dev-1 changken see git
- * @since  v2.0.0 dev-2 changken see git
- */
+
+namespace Changken\Core;
 
 class Container
 {

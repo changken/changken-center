@@ -1,9 +1,11 @@
 <?php
 
+namespace Changken\Database;
+
 abstract class DBconnect
 {
     /**
-        * @var PDO $connect PDO實例
+        * @var \PDO $connect PDO實例
         */
 	protected $connect;
 
@@ -27,7 +29,7 @@ abstract class DBconnect
 	/**
         *  得到PDO實例(getter)
 	*
-        * @return PDO
+        * @return \PDO
         */
     public function getConnect()
     {

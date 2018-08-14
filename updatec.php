@@ -14,17 +14,26 @@ if($session->check())
 
     switch ($code) {
         case 0:
-            echo "<span style=\"color:green;\">更新成功！</span>";
-            echo '<meta http-equiv="refresh" content="2; url=member.php">';
+            $status = 1;
+            $msg = "更新成功！";
             break;
         case 1:
-            echo "<span style=\"color:red;\">更新失敗！</span>";
-            echo '<meta http-equiv="refresh" content="2; url=member.php">';
+            $status = 0;
+            $msg = "更新失敗！";
             break;
     }
 }
 else
 {
-    echo "<span style=\"color:red;\">您尚未登入！</span>";
-    echo '<meta http-equiv="refresh" content="2; url=login.php">';
+    $status = 0;
+    $msg = "您尚未登入！";
+    $redirectTo = "login.php";
 }
+
+//blade
+echo $view->view()->make('tpl.msg',[
+    'title' => '更新會員資訊',
+    'status' => $status,
+    'msg' => $msg,
+    'redirectTo' => (isset($redirectTo)) ? $redirectTo : "member.php"
+])->render();
